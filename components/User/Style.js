@@ -5,7 +5,7 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         padding: 5,
-        backgroundColor: "#1b3669"
+        backgroundColor: "#1b3669",
     },
     title: {
         fontSize: 80,
@@ -26,7 +26,7 @@ export default StyleSheet.create({
         backgroundColor: "#314263",
         borderWidth: 1,
         borderRadius: 10,
-        padding: 5,
+        padding: 15,
         margin: 10,
     },
     textLabel: {
@@ -63,7 +63,26 @@ export default StyleSheet.create({
         marginLeft: 20,
         fontSize: 20,
         color: "whitesmoke",
-        fontWeight: "bold"
-    }
-
+        fontWeight: "bold",   
+    },
+    avatar: {
+        width: 80,
+        height: 80,
+        marginLeft: 20
+    },
+    containerSmall_Register: {
+        borderColor: "#a7a7a8",
+        backgroundColor: "#314263",
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 5,
+        margin: 20,
+    },
+    input_Register: {
+        backgroundColor: "#8390a8",
+        fontSize: 18,
+        borderRadius: 10,
+        padding: 5,
+        margin: 15,
+    },
 })

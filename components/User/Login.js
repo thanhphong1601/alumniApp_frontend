@@ -6,8 +6,7 @@ import API, { authApi, endpoinds } from "../../configs/API"
 import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import dropdownStyle from "./dropdownStyle";
-
-
+import QueryString from "qs"
 
 
 const Login = ({ navigation }) => {
@@ -18,11 +17,14 @@ const Login = ({ navigation }) => {
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
 
+    var qs = require('qs');
+
+
     //for dropdownlist
     const role = [
-        {label: 'Alumni', value: '1'},
-        {label: 'Lecturer', value: '2'},
-        {label: 'Admin', value: '3'},
+        {label: 'Alumni', value: 1},
+        {label: 'Lecturer', value: 2},
+        {label: 'Admin', value: 3},
     ]
     
     const renderLabel = () => {
@@ -40,36 +42,41 @@ const Login = ({ navigation }) => {
         setLoading(true)
 
         try {
-            // let res = await API.post(endpoinds['login'], {
-            //     "username": username,
-            //     "password": password,
-            //     "role" : value,
-            //     "client_id": "qzY70fk6tTqAbaQGsjff7nywCwGQLsFvzrPoVXxq",
-            //     "client_secret": "LAVcESiVijcurMyhze6Ev9gJw7qmBLFGw5hGvGACCOsad1EWohuFOSKta6I4aanrriZqjl6DkS282wfsIh3AVrcVXMgxCDa2govw4pDpacXd3QP4rC1zrJxRH3Cq7jYF",
-            //     "grant_type": "password"
-            // })
-            // console.info(res.data)
-            // let user = await authApi(res.data.access_token).get(endpoinds['current-user'])
-            // dispatch({
-            //     type: "login",
-            //     payload: user.data
-            // })
-            // navigation.navigate("Home")
-            if (username === 'admin' && password === '123') {
-                dispatch({
-                    type: "login",
-                    payload: {
-                        "username": 'admin'
-                    }
-                })
-                navigation.navigate("Home")
-            }
+            let res = await API.post(endpoinds['login'], qs.stringify ({
+                "username": username,
+                "password": password,
+                "role" : value,
+                "client_id": "qzY70fk6tTqAbaQGsjff7nywCwGQLsFvzrPoVXxq",
+                "client_secret": "LAVcESiVijcurMyhze6Ev9gJw7qmBLFGw5hGvGACCOsad1EWohuFOSKta6I4aanrriZqjl6DkS282wfsIh3AVrcVXMgxCDa2govw4pDpacXd3QP4rC1zrJxRH3Cq7jYF",
+                "grant_type": "password"
+            }))
+
+            let user = await authApi(res.data.access_token).get(endpoinds['current-user'])
+            dispatch({
+                type: "login",
+                payload: user.data
+            })
+            console.info(user.data)
+            navigation.navigate("Home")
+            // if (username === 'admin' && password === '123') {
+            //     dispatch({
+            //         type: "login",
+            //         payload: {
+            //             "username": 'admin'
+            //         }
+            //     })
+            //     navigation.navigate("Home")
+            // }
         } catch (ex) {
             console.error(ex)
         } finally {
             setLoading(false)
         }
 
+    }
+    
+    const registerNavigate = () => {
+        navigation.navigate("Register")
     }
 
     return (<View style={Style.containter}>
@@ -113,7 +120,7 @@ const Login = ({ navigation }) => {
                 </TouchableOpacity>
 
             </>}
-            <TouchableOpacity>
+            <TouchableOpacity onPress={registerNavigate}>
                 <Text style={Style.buttonRegister} >Register One</Text>
             </TouchableOpacity>
 

@@ -8,6 +8,10 @@ import Home from './components/Home';
 import Login from './components/User/Login';
 import MyUserReducer from './reducers/MyUserReducer'
 import Logout from './components/User/Logout';
+import Register from './components/User/Register';
+import Profile from './components/ProfileUser/Profile';
+import UpdateProfile from './components/UpdateProfile/UpdateProfile';
+
 
 const Drawer = createDrawerNavigator()
 
@@ -21,8 +25,12 @@ export default function App() {
           <Drawer.Screen name="Home" component={Home} />
           {user===null?<>
             <Drawer.Screen name="Login" component={Login} options={{drawerIcon: null}} />
+            <Drawer.Screen name="Register" component={Register}/>
           </>:<>
-            <Drawer.Screen name="Account Profile" component={Home} />
+            <Drawer.Screen name="Account Profile" component={Profile} />
+            <Drawer.Screen name="Update Profile" component={UpdateProfile} options={{drawerItemStyle:{
+              display: "none"
+            }}}/>
           </>}
 
         </Drawer.Navigator>

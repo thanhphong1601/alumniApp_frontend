@@ -13,7 +13,7 @@ const Home = ({route}) => {
                 <Text>Hello! This is Home page</Text>
 
             </> : <>
-                <Text>Hello {user.username}</Text>
+                <Text>Hello {user.first_name} {user.last_name}`</Text>
             </>}
         </View>
         
