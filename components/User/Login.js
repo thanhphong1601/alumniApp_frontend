@@ -13,12 +13,14 @@ const Login = ({ navigation }) => {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [loading, setLoading] = useState(false)
-    const [user, dispatch] = useContext(MyContext)
+    const [state, dispatch] = useContext(MyContext)
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
 
     var qs = require('qs');
 
+    //async storage
+    //end async storage
 
     //for dropdownlist
     const role = [
@@ -54,7 +56,10 @@ const Login = ({ navigation }) => {
             let user = await authApi(res.data.access_token).get(endpoinds['current-user'])
             dispatch({
                 type: "login",
-                payload: user.data
+                payload:{
+                    user: user.data,
+                    accessToken: res.data.access_token
+                }
             })
             console.info(user.data)
             navigation.navigate("Home")
@@ -120,7 +125,7 @@ const Login = ({ navigation }) => {
                 </TouchableOpacity>
 
             </>}
-            <TouchableOpacity onPress={registerNavigate}>
+            <TouchableOpacity onPress={registerNavigate} style={Style.touchableOpa}>
                 <Text style={Style.buttonRegister} >Register One</Text>
             </TouchableOpacity>
 

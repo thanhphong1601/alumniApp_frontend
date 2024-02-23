@@ -6,7 +6,8 @@ const PY_HOST = "https://loc.pythonanywhere.com"
 export const endpoinds = {
     'login': '/o/token/',
     'register': '/register/',
-    'current-user': '/users/current-user/'
+    'current-user': '/users/current-user/',
+    'user-update': (userID) => `/users/${userID}/`,
 }
 
 //10.0.2.2    127.0.0.1

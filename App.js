@@ -14,16 +14,20 @@ import UpdateProfile from './components/UpdateProfile/UpdateProfile';
 
 
 const Drawer = createDrawerNavigator()
+const initialState = {
+  user: null,
+  accessToken: null
+}
 
 export default function App() {
-  const [user, dispatch] = useReducer(MyUserReducer, null)
+  const [state, dispatch] = useReducer(MyUserReducer, initialState)
 
   return (
-    <MyContext.Provider value={[user, dispatch]}>
+    <MyContext.Provider value={[state, dispatch]}>
       <NavigationContainer>
         <Drawer.Navigator initialRouteName='Login' drawerContent={MyDrawerItem}>
           <Drawer.Screen name="Home" component={Home} />
-          {user===null?<>
+          {state.user===null?<>
             <Drawer.Screen name="Login" component={Login} options={{drawerIcon: null}} />
             <Drawer.Screen name="Register" component={Register}/>
           </>:<>

@@ -57,7 +57,11 @@ export default StyleSheet.create({
         color: "#c6c8cc",
         textAlign: "right",
         padding: 15,
-        textDecorationLine: "underline"
+        textDecorationLine: "underline",
+    },
+    touchableOpa: {
+        marginLeft: 233,
+        borderRadius: 50
     },
     txtAvatar: {
         marginLeft: 20,

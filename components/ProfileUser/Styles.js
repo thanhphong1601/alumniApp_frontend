@@ -22,7 +22,7 @@ export default StyleSheet.create({
       fontSize: 24,
       fontWeight: 'bold',
       marginTop: 1,
-      paddingLeft: 10
+      paddingLeft: 10,
     },
     mail: {
       fontSize: 16,

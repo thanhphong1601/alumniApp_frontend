@@ -4,11 +4,15 @@ import MyContext from "../../configs/MyContext"
 import { TouchableOpacity } from "react-native-gesture-handler"
 
 const Logout = () => {
-    const [user, dispatch] = useContext(MyContext)
+    const [state, dispatch] = useContext(MyContext)
 
     const logout = () => {
         dispatch({
-            type: "logout"
+            type: "logout",
+            payload: {
+                user: null,
+                accessToken: null
+            }
         })
     }
 

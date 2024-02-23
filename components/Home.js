@@ -4,16 +4,16 @@ import MyContext from "../configs/MyContext"
 
 
 const Home = ({route}) => {
-    const [user, dispatch] = useContext(MyContext)
+    const [state, dispatch] = useContext(MyContext)
 
     return (
         <View>
-            {user === null ? <>
+            {state.user === null ? <>
 
                 <Text>Hello! This is Home page</Text>
 
             </> : <>
-                <Text>Hello {user.first_name} {user.last_name}`</Text>
+                <Text>Hello {state.user.first_name} {state.user.last_name}`</Text>
             </>}
         </View>
         
